@@ -1,14 +1,24 @@
+// competitive/.vscode/c_cpp_properties.json
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "WSL-GCC", // 設定の名前は任意。LinuxよりWSL-GCCなど具体的にすると分かりやすい
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**", // これでcompetitive/以下の全フォルダを検索対象に
+                // 以前は「${workspaceFolder}/ac-library」のように明示的に書いていましたが、
+                // 上の「${workspaceFolder}/**」があれば、基本的にはac-library-master内のヘッダも検索対象になります。
+                // ただし、もし特定のライブラリのパスを正確に指定したい場合は、
+                // "${workspaceFolder}/ac-library-master" を追加します。
+                // ただ、多くの場合、"${workspaceFolder}/**" だけで解決します。
+                "${workspaceFolder}/ac-library-master" // これを追加すると、ac-library-master/atcoder/ のように指定できる
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc",
+            // compilerPath は、通常 /usr/bin/g++ で問題ありません。
+            // あなたのls結果はgccなので、もしgcc単体で動かすなら /usr/bin/gcc ですが、
+            // C++の場合はg++を使うので、/usr/bin/g++ が正しいです。
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "c17",
-            "cppStandard": "gnu++17",
+            "cppStandard": "c++17", // AtCoder向けには gnu++17 ではなく c++17 でOKです
             "intelliSenseMode": "linux-gcc-x64"
         }
     ],
